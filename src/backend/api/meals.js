@@ -1,12 +1,13 @@
 const express = require("express");
 const app = express();
 const router = express.Router();
-// @ts-ignore
-const pool = require("../../database");
 
-router.get("/", (request, response) => {
+const pool = require("../database");
+const knex = require("../database");
+
+router.get("/", async (request, response) => {
   try{
-    const meals = await pool("meals");
+    const meals = await knex("meals");
     return meals
 
   }
