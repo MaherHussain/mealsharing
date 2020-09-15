@@ -4,7 +4,7 @@ var mysql = require("mysql");
 
 require("dotenv").config();
 
-/* var pool = mysql.createPool({
+var pool = mysql.createPool({
   connectionLimit: 10,
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
@@ -14,8 +14,8 @@ require("dotenv").config();
   multipleStatements: true
 });
 
- */
-const knex = require("knex")({
+
+/* const knex = require("knex")({
   client: "mysql2",
   connection: {
     host: process.env.DB_HOST,
@@ -25,8 +25,8 @@ const knex = require("knex")({
     database: process.env.DB_NAME,
   },
   pool: { min: 0, max: 7 },
-});
-/* pool.getConnection((err, connection) => {
+}); */
+pool.getConnection((err, connection) => {
   if (err) {
     if (err.code === "PROTOCOL_CONNECTION_LOST") {
       console.error("Database connection was closed.");
@@ -40,6 +40,6 @@ const knex = require("knex")({
   }
   if (connection) connection.release();
   return;
-}); */
+});
 
-module.exports = knex;
+module.exports = pool;

@@ -2,25 +2,26 @@ const express = require("express");
 const app = express();
 const router = express.Router();
 
-const pool = require("../database");
+const pool = require("./../database");
 const knex = require("../database");
 
 router.get("/", async (request, response) => {
-  try{
-    const meals = await knex("meals");
-    return meals
+   pool.query("/meals", function (error, results, fields) {
+     if (error) {
+       throw error;
+     }
 
-  }
-  catch(error){
-    console.log(error)
-
-  }
+     response.json({ this: "is working!" });
+     // error will be an Error if one occurred during the query
+     // results will contain the results of the query
+     // fields will contain information about the returned results fields (if any)
+   });
 
   
 });
 
 
-router.post("/", async (request, response) => {
+/* router.post("/", async (request, response) => {
   creatNewMeal({
     body: request.body,
   })
@@ -50,7 +51,7 @@ const creatNewMeal = async ({ body }) => {
     price,
     created_date,
   });
-};
+}; */
 
 // return meal by Id
 const getMealById = async ({ id, body }) => {
@@ -82,7 +83,7 @@ router.get("/:id", async (request, response) => {
 });
 
 // update meal by id
-router.put("/:id", async (request, response) => {
+/* router.put("/:id", async (request, response) => {
   editMeal({
     body: request.body,
     id: request.params.id,
@@ -175,7 +176,7 @@ const deleteMeal = async ({ body, id }) => {
       .delete(meals);
   } else return "Nothing deleted!";
 };
-
+ */
 
 
 module.exports = router;
