@@ -1,9 +1,11 @@
 window.handleHomeRequest = () => {
   document.body.innerHTML = `
-  
-  
-  
-  
+  <header>
+  <h4>Welcome to meal-sharing applicaion -</h4>
+  <p>this is my first app using node js - </p>
+</header>
+
+
   <h1>Home</h1>
   <a href="meals" data-navigo>Meals</a>
   asd

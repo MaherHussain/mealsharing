@@ -6,7 +6,7 @@ const pool = require("./../database");
 const knex = require("../database");
 
 router.get("/", async (request, response) => {
-   pool.query("/meals", function (error, results, fields) {
+   pool.query("select * from meals ", function (error, results, fields) {
      if (error) {
        throw error;
      }
