@@ -2,3 +2,11 @@
 * {
   font-family: 'Montserrat', sans-serif;
 }
+
+body {
+  background-color:#000;
+  color:#fff;
+}
+header {
+  height: 200px;
+}
