@@ -20,7 +20,9 @@ router.get("/", async (request, response) => {
   
 });
 router.get("/:id", async (request, response) => {
-  pool.query(`select * from meals where{id = ${request.params.id} } `, function (error, results, fields) {
+
+
+  pool.query(`select * from meals where id = ${request.params.id}  `, function (error, results, fields) {
     if (error) {
       throw error;
     }

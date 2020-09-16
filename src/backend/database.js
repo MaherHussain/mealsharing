@@ -15,7 +15,7 @@ var pool = mysql.createPool({
 });
 
 
-/* const knex = require("knex")({
+const knex = require("knex")({
   client: "mysql2",
   connection: {
     host: process.env.DB_HOST,
@@ -25,7 +25,7 @@ var pool = mysql.createPool({
     database: process.env.DB_NAME,
   },
   pool: { min: 0, max: 7 },
-}); */
+});
 pool.getConnection((err, connection) => {
   if (err) {
     if (err.code === "PROTOCOL_CONNECTION_LOST") {
@@ -43,3 +43,4 @@ pool.getConnection((err, connection) => {
 });
 
 module.exports = pool;
+module.exports = knex;
