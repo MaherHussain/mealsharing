@@ -19,7 +19,18 @@ router.get("/", async (request, response) => {
 
   
 });
+router.get("/id", async (request, response) => {
+  pool.query(`select * from meals where{id = ${request.params.id} } `, function (error, results, fields) {
+    if (error) {
+      throw error;
+    }
 
+    response.json(results);
+    // error will be an Error if one occurred during the query
+    // results will contain the results of the query
+    // fields will contain information about the returned results fields (if any)
+  });
+});
 
 /* router.post("/", async (request, response) => {
   creatNewMeal({
@@ -54,7 +65,7 @@ const creatNewMeal = async ({ body }) => {
 }; */
 
 // return meal by Id
-const getMealById = async ({ id, body }) => {
+/* const getMealById = async ({ id, body }) => {
   try {
     const {
       title,
@@ -81,7 +92,7 @@ router.get("/:id", async (request, response) => {
       console.log(ex);
     });
 });
-
+ */
 // update meal by id
 /* router.put("/:id", async (request, response) => {
   editMeal({
